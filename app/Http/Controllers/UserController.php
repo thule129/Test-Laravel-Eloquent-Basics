@@ -15,7 +15,7 @@ class UserController extends Controller
         //   order by created_at desc
         //   limit 3
 
-        $users = User::where('email_varified_at','<>', NULL)
+        $users = User::whereNotNull('email_varified_at')
                         ->orderBy('created_at', 'desc')
                         ->take(3)
                         ->get(); // replace this with Eloquent statement
