@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    protected $fillable = ['name'];
-
     public function store(Request $request)
     {
         // TASK: Currently this statement fails. Fix the underlying issue.
@@ -22,7 +20,7 @@ class ProjectController extends Controller
 
         // $new_project->save();
 
-        // return redirect('/')->with('success', 'Project created');
+        return redirect('/')->with('success', 'Project created');
     }
 
     public function mass_update(Request $request)
@@ -34,7 +32,7 @@ class ProjectController extends Controller
 
         // Insert Eloquent statement below
 
-        Project::where('name', $request->old_name)->update(['name', $request->new_name]);
+        Project::where('name', $request->old_name)->update(['name' => $request->new_name]);
 
         return redirect('/')->with('success', 'Projects updated');
     }
@@ -44,7 +42,7 @@ class ProjectController extends Controller
         Project::destroy($projectId);
 
         // TASK: change this Eloquent statement to include the soft-deletes records
-        $projects = Project::withTrashed();
+        $projects = Project::withTrashed()->get();
 
         return view('projects.index', compact('projects'));
     }
