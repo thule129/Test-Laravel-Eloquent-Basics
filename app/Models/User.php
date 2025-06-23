@@ -45,6 +45,6 @@ class User extends Authenticatable
     ];
 
     protected function active(Builder $query) {
-        $query->whereNotNull('email_verified_at');
+        return $query->whereNotNull('email_verified_at');
     }
 }
