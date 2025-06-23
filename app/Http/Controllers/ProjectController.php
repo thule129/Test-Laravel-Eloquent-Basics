@@ -56,7 +56,7 @@ class ProjectController extends Controller
         $project->save();
 
         $stats = Stat::first();
-        $stats->project_count += 1;
+        $stats->projects_count += 1;
 
         $stats->save();
 

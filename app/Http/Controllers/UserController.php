@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 
 class UserController extends Controller
 {
@@ -65,10 +63,6 @@ class UserController extends Controller
         // Insert Eloquent statement here
         User::destroy($request->users);
         return redirect('/')->with('success', 'Users deleted');
-    }
-
-    protected function active(Builder $query) {
-        $query->whereNotNull('email_verified_at');
     }
 
     public function only_active()
